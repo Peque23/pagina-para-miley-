@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Miley, de Jae 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Cormorant Garamond (display elegante) + Lato (body suave) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========================================================
+       CURSOR PERSONALIZADO
+  ======================================================== -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- ========================================================
+       CANVAS DE ESTRELLAS (fondo animado en toda la página)
+  ======================================================== -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- ========================================================
+       PÉTALOS FLOTANTES (decoración pastel)
+  ======================================================== -->
+  <div id="petals-container"></div>
+
+  <!-- ========================================================
+       PANTALLA DE CARGA / INTRO
+       - Aparece primero con el nombre de Miley
+       - Clic o espera 4s para continuar
+  ======================================================== -->
+  <div id="intro-screen">
+    <div id="intro-content">
+      <div id="intro-tag">✦ un mensaje especial para ✦</div>
+      <h1 id="intro-name">Miley</h1>
+      <p id="intro-sub">de parte de alguien que te ama más de lo que sabe expresar</p>
+      <button id="intro-btn" onclick="enterPage()">
+        <span>Abrir con el corazón</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      </button>
+    </div>
+    <!-- Partículas de corazones en el intro -->
+    <div id="intro-hearts"></div>
+  </div>
+
+  <!-- ========================================================
+       PÁGINA PRINCIPAL (oculta hasta que se pasa el intro)
+  ======================================================== -->
+  <main id="main-page" class="hidden">
+
+    <!-- ====================================================
+         SECCIÓN 1: HERO
+    ==================================================== -->
+    <section id="hero" class="section">
+      <div class="section-inner">
+        <span class="label-tag">✦ para ti ✦</span>
+        <h2 class="hero-title">
+          Mi niña,<br/>
+          <em>mi princesa,</em><br/>
+           Miel.
+        </h2>
+        <p class="hero-sub">
+          Hay cosas que el orgullo no deja decir,<br/>
+          pero el amor no puede callar más.
+        </p>
+        <div class="scroll-hint">
+          <span>Sigue leyendo</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 2: NUESTRA HISTORIA + CONTADOR
+    ==================================================== -->
+    <section id="historia" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ nuestra historia ✦</span>
+        <h2 class="section-title reveal">Desde que llegaste,<br/><em>mi mundo cambió.</em></h2>
+        <p class="body-text reveal">
+          Jae y Miley. Dos personas que se encontraron y sin querer
+          construyeron algo único, Esa conexion que nosotros tuvimos fue especial, algo que vale cada recuerdo, cada risa,
+          cada momento — incluso los difíciles.
+        </p>
+
+        <!-- Contador de tiempo juntos -->
+        <div id="timer-card" class="reveal">
+          <div class="timer-label">llevamos juntos</div>
+          <div id="timer-display">
+            <div class="time-unit"><span id="t-days">---</span><small>días</small></div>
+            <div class="time-sep">:</div>
+            <div class="time-unit"><span id="t-hours">--</span><small>horas</small></div>
+            <div class="time-sep">:</div>
+            <div class="time-unit"><span id="t-mins">--</span><small>minutos</small></div>
+            <div class="time-sep">:</div>
+            <div class="time-unit"><span id="t-secs">--</span><small>segundos</small></div>
+          </div>
+          <div class="timer-note">
+            <!-- ✏️ CAMBIA ESTA FECHA: formato "YYYY-MM-DD" — es la fecha en que empezaron -->
+            <!-- La fecha está en script.js, variable START_DATE -->
+            de momentos que no cambiaría por nada
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 3: LÍNEA DEL TIEMPO
+    ==================================================== -->
+    <section id="timeline" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ momentos que atesoro ✦</span>
+        <h2 class="section-title reveal">Nuestros<br/><em>capítulos favoritos</em></h2>
+
+        <div class="timeline-container">
+
+          <!-- Momento 1 -->
+          <div class="timeline-item reveal" data-side="left">
+            <div class="timeline-dot">💍</div>
+            <div class="timeline-card">
+              <div class="timeline-emoji-big">🌸</div>
+              <h3>Cuando te pedí que fueras mía</h3>
+              <p>
+                El momento en que me armé de valor y te pregunté si querías ser
+                mi novia. Mi corazón latía tan fuerte… y cuando dijiste que sí,
+                sentí que el mundo se detenía solo para nosotros dos.
+              </p>
+              <!-- ✏️ PUEDES CAMBIAR ESTE TEXTO con tus propias palabras -->
+            </div>
+          </div>
+
+          <!-- Momento 2 -->
+          <div class="timeline-item reveal" data-side="right">
+            <div class="timeline-dot">🎂</div>
+            <div class="timeline-card">
+              <div class="timeline-emoji-big">🎁</div>
+              <h3>Mi cumpleaños — el que hiciste especial</h3>
+              <p>
+                Ese día lo tengo grabado para siempre. Fuiste y lo convertiste
+                en algo mágico. No necesité nada más que tenerte ahí.
+                Ese día entendí lo mucho que me quieres, mi amor.
+              </p>
+              <!-- ✏️ CAMBIA ESTE TEXTO con lo que pasó ese día -->
+            </div>
+          </div>
+
+          <!-- Momento 3 -->
+          <div class="timeline-item reveal" data-side="left">
+            <div class="timeline-dot">💧</div>
+            <div class="timeline-card">
+              <div class="timeline-emoji-big">🌊</div>
+              <h3>El día que nos tiramos agua en el colegio</h3>
+              <p>
+                Empapados y riendo sin parar. Esa versión tuya —
+                despreocupada, libre, feliz — es una de mis imágenes favoritas
+                en el mundo. Eres hermosa cuando ríes así, mi niña.
+              </p>
+              <!-- ✏️ CAMBIA ESTE TEXTO si quieres agregar más detalles -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 4: GALERÍA DE RECUERDOS
+    ==================================================== -->
+    <section id="galeria" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ galería ✦</span>
+        <h2 class="section-title reveal">Momentos<br/><em>guardados en mi memoria</em></h2>
+        <p class="body-text reveal">
+          Estas son algunas de las imágenes que más atesoro de nosotros.
+          <!-- ✏️ INSTRUCCIÓN: reemplaza las imágenes en script.js, array GALLERY_IMAGES -->
+        </p>
+
+        <div id="gallery-grid" class="reveal">
+          <!--
+            ✏️ CÓMO CAMBIAR FOTOS:
+            En script.js busca el array GALLERY_IMAGES y reemplaza
+            los src con las rutas de tus fotos:
+            Ejemplo: "fotos/foto1.jpg"
+            Puedes poner fotos en la misma carpeta que index.html
+          -->
+          <div class="gallery-item" data-index="0">
+            <div class="gallery-placeholder">
+              <span>📷</span>
+              <p>Foto 1<br/><small>reemplazar en script.js</small></p>
+            </div>
+          </div>
+          <div class="gallery-item" data-index="1">
+            <div class="gallery-placeholder">
+              <span>📷</span>
+              <p>Foto 2<br/><small>reemplazar en script.js</small></p>
+            </div>
+          </div>
+          <div class="gallery-item" data-index="2">
+            <div class="gallery-placeholder">
+              <span>📷</span>
+              <p>Foto 3<br/><small>reemplazar en script.js</small></p>
+            </div>
+          </div>
+          <div class="gallery-item" data-index="3">
+            <div class="gallery-placeholder">
+              <span>📷</span>
+              <p>Foto 4<br/><small>reemplazar en script.js</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 5: PLAYER "SPOTIFY" — Jay Wheeler EaZt
+    ==================================================== -->
+    <section id="musica" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ nuestra canción ✦</span>
+        <h2 class="section-title reveal"><em>La canción que<br/>nos define</em></h2>
+
+        <div id="spotify-card" class="reveal">
+          <div id="spotify-album">
+            <!-- ✏️ CAMBIA src por la portada del álbum si tienes imagen -->
+            <div id="album-art">
+              <div id="album-placeholder">🎵</div>
+              <!-- <img src="album-cover.jpg" alt="EaZt" /> -->
+            </div>
+            <div id="album-vinyl"></div>
+          </div>
+          <div id="spotify-info">
+            <div id="spotify-badge">● Nuestra canción</div>
+            <h3 id="spotify-title">EaZt</h3>
+            <p id="spotify-artist">Jay Wheeler</p>
+            <div id="spotify-bar">
+              <div id="spotify-progress"></div>
+            </div>
+            <div id="spotify-controls">
+              <button class="sp-btn" id="sp-prev">⏮</button>
+              <button class="sp-btn sp-play" id="sp-play" onclick="toggleSpotify()">▶</button>
+              <button class="sp-btn" id="sp-next">⏭</button>
+            </div>
+            <p id="spotify-note">
+              <!--
+                ✏️ CÓMO AGREGAR MÚSICA REAL:
+                1. Descarga el MP3 de "EaZt" por Jay Wheeler
+                2. Guárdalo en la misma carpeta como "cancion.mp3"
+                3. En script.js cambia SONG_SRC = "cancion.mp3"
+              -->
+              <em>"Cada vez que escucho esta canción, pienso en ti."</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 6: LA CARTA — DISCULPA PROFUNDA
+    ==================================================== -->
+    <section id="carta" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ desde lo más profundo ✦</span>
+        <h2 class="section-title reveal">Una carta<br/><em>para ti, mi princesa</em></h2>
+
+        <div id="carta-container" class="reveal">
+          <div id="carta-inner">
+            <div class="carta-saludo">Miley,</div>
+            <div class="carta-body" id="carta-text">
+              <!-- El texto de la carta se escribe letra por letra en JS -->
+              <!-- ✏️ CAMBIA EL TEXTO en script.js, variable CARTA_TEXT -->
+            </div>
+            <div class="carta-firma" id="carta-firma">
+              <em>Con todo mi amor,</em><br/>
+              <strong>Jae</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         SECCIÓN 7: BOTÓN FINAL — ¿ME PERDONAS?
+    ==================================================== -->
+    <section id="final" class="section">
+      <div class="section-inner">
+        <span class="label-tag reveal">✦ la pregunta ✦</span>
+        <h2 class="section-title reveal" id="final-title">
+          Miley,<br/><em>¿me das otra oportunidad?</em>
+        </h2>
+        <p class="body-text reveal" id="final-sub">
+          Sé que no tengo derecho de pedirte nada.<br/>
+          Pero el corazón no entiende de orgullo.
+        </p>
+
+        <div id="final-buttons" class="reveal">
+          <button class="btn-yes" onclick="onYes()">
+            <span>Sí, te perdono 💗</span>
+          </button>
+          <button class="btn-no" onclick="onNo()">
+            <span>Necesito tiempo...</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         RESPUESTA: SÍ ME PERDONAS
+    ==================================================== -->
+    <div id="response-yes" class="response-screen hidden">
+      <div class="response-content">
+        <div class="response-emoji">💗</div>
+        <h2>Gracias, mi amor</h2>
+        <p>
+          Te juro que voy a ser el hombre que mereces.<br/>
+          Vas a ver que este capítulo nuevo va a ser el mejor.<br/>
+          Te amo, mi niña. Gracias por darme otra oportunidad.
+        </p>
+        <div id="confetti-container"></div>
+        <!-- ✏️ CAMBIA este texto si quieres un mensaje más personal -->
+      </div>
+    </div>
+
+    <!-- ====================================================
+         RESPUESTA: NECESITA TIEMPO / NO
+    ==================================================== -->
+    <div id="response-no" class="response-screen hidden">
+      <div class="response-content">
+        <div class="response-emoji">🌸</div>
+        <h2>Lo entiendo, Miley.</h2>
+        <p>
+          Si decides no volver, quiero que sepas esto:<br/><br/>
+          Mereces a alguien que nunca te falle.<br/>
+          Alguien que te cuide como la princesa que eres.<br/>
+          Alguien que esté a la altura de todo lo que das.<br/><br/>
+          Ojala encuentres a ese hombre — que te valore tanto
+          como yo, o mucho más. Porque tú lo mereces todo, mi miel.<br/><br/>
+          <em>Siempre voy a querer lo mejor para ti.</em>
+        </p>
+        <div class="floating-hearts-final"></div>
+        <!-- ✏️ PUEDES PERSONALIZAR este mensaje de cierre -->
+      </div>
+    </div>
+
+  </main><!-- /main-page -->
+
+  <!-- ========================================================
+       AUDIO OCULTO
+       ✏️ INSTRUCCIÓN: descarga "EaZt" de Jay Wheeler como MP3
+       guárdalo en la misma carpeta con el nombre cancion.mp3
+       y descomenta la línea de abajo:
+  ======================================================== -->
+  <!-- <audio id="bg-music" loop src="cancion.mp3"></audio> -->
+  <audio id="bg-music" loop>
+    <!-- src se asigna en script.js con variable SONG_SRC -->
+  </audio>
+
+  <!-- Audio de click suave (sonido de beso / campana) -->
+  <audio id="click-sound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
+
+  <!-- Botón flotante para música -->
+  <button id="music-toggle" onclick="toggleMusic()" title="Música">
+    <span id="music-icon">🎵</span>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
